@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/gcp-2023-442909/image1', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/gcp-2023-442909/image1']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    script: |
+      gcloud run deploy node-js-hello-world \
+      --image=gcr.io/gcp-2023-442909/image1 \
+      --region=us-central1 \
+      --platform=managed \
+      --allow-unauthenticated \
+      --port=8080 \
+      --service-account=service-account-ala@gcp-2023-442909.iam.gserviceaccount.com
+images:
+  - 'gcr.io/gcp-2023-442909/image1'
