@@ -16,3 +16,6 @@ steps:
       --service-account=service-account-ala@gcp-2023-442909.iam.gserviceaccount.com
 images:
   - 'gcr.io/gcp-2023-442909/image1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
